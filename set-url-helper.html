@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <title>Générateur de route set-url</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            padding: 20px;
+            background: #f5f5f5;
+        }
+        input {
+            width: 100%;
+            padding: 10px;
+            font-size: 16px;
+            margin-bottom: 15px;
+        }
+        button {
+            padding: 10px 15px;
+            font-size: 16px;
+            cursor: pointer;
+        }
+        a {
+            display: block;
+            margin-top: 20px;
+            font-size: 18px;
+            color: blue;
+        }
+    </style>
+</head>
+<body>
+
+<h2>Générateur de lien /set-url</h2>
+
+<label for="midUrl">Colle ici ton URL n01 (avec mid=...) :</label>
+<input type="text" id="midUrl"
+       placeholder="https://n01darts.com/n01/online/n01_view.html?mid=XXXX">
+
+<button onclick="generate()">Générer le lien</button>
+
+<a id="generatedLink" href="#" target="_blank"></a>
+
+<script>
+    function generate() {
+        const input = document.getElementById("midUrl").value.trim();
+        const link = document.getElementById("generatedLink");
+
+        if (!input) {
+            alert("Merci d’entrer l’URL !");
+            return;
+        }
+
+        const encoded = encodeURIComponent(input);
+        const finalUrl = `http://localhost:3000/set-url?url=${encoded}`;
+
+        link.href = finalUrl;
+        link.textContent = "➡️ Cliquer ici pour charger la partie dans ton overlay";
+
+    }
+</script>
+
+</body>
+</html>
